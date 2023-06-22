@@ -69,10 +69,10 @@ main {
 form {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   background-color: white;
+  gap: 20px;
   padding: 40px;
-  min-height: 480px;
   border-radius: 8px;
   box-shadow: 0 6px rgba(0, 0, 0, 0.2);
   font-family: var(--font-fam);
@@ -81,22 +81,25 @@ form {
 
 input {
   padding: 15px 30px;
+  width: 100%;
   font-weight: 600;
   border-radius: 5px;
   border-color: var(--grayish-blue);
   border-width: 3px;
-  /* error */
+}
+
+.input-empty-error {
   border-color: var(--red);
   background: url(images/icon-error.svg) no-repeat scroll 95% 50%;
   background-size: 6%;
 }
 
 .error-message {
-  /* transform: translateY(-3px); */
   font-size: 10px;
   text-align: right;
   color: red;
-  
+  margin-bottom: 0;
+  margin-top: 5px;
   display: none;
 }
 
@@ -114,7 +117,7 @@ button {
   background-color: var(--green);
   padding: 15px;
   text-transform: uppercase;
-  border-radius: 5px;
+  border-radius: 3px;
   border: none;
   box-shadow: 0 2px rgba(0, 0, 0, 0.4);
 }

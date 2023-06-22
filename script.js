@@ -1,81 +1,85 @@
+const form = document.getElementById('form');
+const inputs = document.querySelectorAll('input');
+const email = document.getElementById('email');
 
+function emptyFieldError(input) {
+  const errorMessage = input.closest("div").querySelector(".error-message");
+  input.classList.add('input-empty-error');
+  errorMessage.style.display = 'block';
+  errorMessage.textContent = `${input.name} cannt be empty`;
+}
 
-//   event.preventDefault(); // prevent form submission
-//   console.log(firstName)
+function revertFieldError(input) {
+  const errorMessage = input.closest("div").querySelector(".error-message");
+  input.classList.remove('input-empty-error');
+  errorMessage.style.display = 'none';
+}
 
-//     // Check if any field is empty
-//   if (firstName === "") {
-//     alert("First name cannot be empty");
-//     return false;
-//   }
-//   if (lastName === "") {
-//     alert("Last name cannot be empty");
-//     return false;
-//   }
-//   if (email === "") {
-//     alert("Email cannot be empty");
-//     return false;
-//   }
-//   if (password === "") {
-//     alert("Password cannot be empty");
-//     return false;
-//   }
+function invalidEmailError(email) {
+  const errorMessage = email.closest("div").querySelector(".error-message");
 
-//  // Check email format using a regular expression
-//  const emailPattern = /^\S+@\S+\.\S+$/;
-//  if (!emailPattern.test(email.value)) {
-//    alert("Email is not formatted correctly");
-//    return;
-//  }
+  emptyFieldError(email);
+  email.style.color = 'hsl(0, 100%, 74%)';
+  errorMessage.textContent = "Looks like this is not an email";
+}
 
-//   alert("Form submitted successfully!");
-// })
+function revertEmailError(email) {
+  revertFieldError(email);
+  email.style.removeProperty("color");
 
-const form = document.getElementById("form");
+}
 
 function checkFields() {
-  const inputs = document.querySelectorAll('input');
-  let message = "You need to fill out these fields:\n";
   let empty = false;
-
   inputs.forEach(input => {
     const inputText = input.value.trim();
 
-    if (inputText == '') {
-      message = message + input.name + "\n";
+    if (!inputText) // input empty
+    {
+      emptyFieldError(input);
       empty = true;
+    }
+    else {
+      revertFieldError(input);
     }
   });
 
-  if (empty) 
-  { 
-    alert(message);
+  if (empty) { // there is an empty field
+    return false;
+  } else {
     return true;
   }
 }
 
-form.addEventListener('submit', event => 
-{
+function checkEmail() {
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email.value)) // email is not valid
+  {
+    invalidEmailError(email)
+    return false;
+  }
+  else {
+    revertEmailError(email)
+    return true;
+  }
+
+}
+
+// Checks for empty fields or invalid email
+form.addEventListener('submit', event => {
   event.preventDefault();
 
+  let noEmpty = false;
+  let emailValidity = false;
 
-  if(checkFields()) return;
-  form.submit();
+  noErrors = checkFields();
+
+  if (email.value) emailValidity = checkEmail();
+  //email not empty
+
+  console.log(noErrors, emailValidity)
+  if (noErrors && emailValidity) {
+    form.submit();
+    alert('form submitted!')
+  }
 });
-
-
-
-
-// function checkEmail() {
-//   if (!checkValidity(email)) {
-//     alert('Looks like this is not an email')
-//     return true;
-//   }
-// }
-
-// submit.addEventListener("click", function () {
-//   if (checkFields()) return;
-//   if (checkEmail()) return;
-
-//   alert('Free Trial Claimed')
-// });
