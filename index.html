@@ -1,35 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+
   <title>Frontend Mentor | Intro component with sign up form</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <main>
     <section class="left-side">
       <h1>Learn to code by watching others</h1>
-      <p>See how experienced developers solve problems in real-time. Watching scripted tutorials is great, but understanding how developers think is invaluable.
+      <p>
+        See how experienced developers solve problems in real-time. Watching
+        scripted tutorials is great, but understanding how developers think is
+        invaluable.
       </p>
     </section>
     <section class="right-side">
-      <div class="trial"><span class="try">Try it free 7 days</span> <span class="after">then $20/mo. thereafter</span></div>
-      <div class="form">
-        <input type="text" id="first-name">
-        <input type="text" id="last-name">
-        <input type="text" id="email">
-        <input type="text" id="password">
-        <button>Claim your free trial</button>
-        <footer>By clicking the button, you are agreeing to our <span class="red">Terms and Services</span>
-        </footer>
+      <div class="trial">
+        <span class="try">Try it free 7 days</span>
+        <span class="after">then $20/mo. thereafter</span>
       </div>
+      <form id="form">
+        <input type="text" name="First Name" id="first-name" placeholder="First Name" />
+        <div><p class="error-message">First Name cannot be empty</p></div>
+        <input type="text" name="Last Name" id="last-name" placeholder="Last Name" />
+        <div><p class="error-message">Last Name cannot be empty</p></div>
+        <input type="email" name="Email Address" id="email" placeholder="Email Address" />
+        <div><p class="error-message">Email cannot be empty</p></div>
+        <input type="password" name="Password" id="password" placeholder="Password"/>
+        <div><p class="error-message">Password cannot be empty</p></div>
+        <button type="submit">Claim your free trial</button>
+        <footer class="footer">
+          By clicking the button, you are agreeing to our
+          <span class="red">Terms and Services</span>
+        </footer>
+      </form>
     </section>
   </main>
 </body>
+<script src="script.js"></script>
+
 </html>
